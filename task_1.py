@@ -64,3 +64,12 @@ def lazy_scribe(sources: list):
                     flag = False
         index += 1
     return result
+
+
+def test_lazy_scribe():
+    assert lazy_scribe(["python", "java", "golang"]) == "pjgyaotvlh2ao2ng"
+    assert lazy_scribe([]) == ""
+    assert lazy_scribe([""]) == ""
+    assert lazy_scribe(["", "", "", ""]) == ""
+    assert lazy_scribe(["a", "b", "c", "d"]) == "abcd"
+    assert lazy_scribe(["yomasoul", "yomaha", "yoma", "tyryryryry", "ryry"]) == "3ytr3o2y3m2r3a2yshroayurlyry"
