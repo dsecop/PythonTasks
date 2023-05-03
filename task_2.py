@@ -22,6 +22,14 @@ def simple_functional_calc(x):
             else:
                 result = x - y
             return result
+
         return operation
+
     return symbol
 
+
+def test_simple_functional_calc():
+    assert simple_functional_calc(1)("+")(1) == 2
+    assert simple_functional_calc(1)("-")(1) == 0
+    assert simple_functional_calc(10)("+")(123) == 133
+    assert simple_functional_calc(0)("-")(5) == -5
