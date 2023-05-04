@@ -28,3 +28,8 @@ def calculator(x):
 
     return symbol
 
+
+def test_calculator():
+    assert calculator(1)("+")(2)("=") == 3
+    assert calculator(100)("-")(1)("-")(1)("-")(3)("=") == 95
+    assert calculator(1)("+")(1)("-")(1)("+")(1)("-")(1)("+")(1)("-")(1)("=") == 1
