@@ -23,3 +23,11 @@ class Bee:
 
     def __str__(self):
         return f'{self.identifier} {self.name}'
+
+
+def test_get_hive():
+    bee1 = Bee(name="Maja", identifier=222)
+    bee2 = Bee(name="Gucio", identifier=4234)
+
+    assert str(bee1) == "222 Maja"
+    assert str(bee2) == "4234 Gucio"
