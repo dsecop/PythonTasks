@@ -47,3 +47,50 @@ class Ant:
 
     def __str__(self):
         return f'{self.name}'
+
+
+class TestAntColony:
+    def test_default_case(self):
+        assert isinstance(Colony, type)
+        assert isinstance(Ant, type)
+
+    def test_empty_colony(self):
+        colony = Colony("my-colony")
+        assert colony.ants == set()
+        assert colony.name == "my-colony"
+
+    def test_ant_spawning(self):
+        colony = Colony("my-colony")
+        worker = colony.spawn_ant("worker")
+        assert worker.name == "worker"
+        assert worker.colony == colony
+        assert colony.ants == {worker}
+
+    def test_multiple_colonies(self):
+        colony_alpha = Colony("alpha")
+        colony_beta = Colony("beta")
+        alpha_worker = colony_alpha.spawn_ant("worker")
+
+        assert alpha_worker.colony == colony_alpha
+        assert colony_alpha.ants == {alpha_worker}
+        assert colony_beta.ants == set()
+
+        beta_worker = colony_beta.spawn_ant("worker")
+        assert beta_worker.colony == colony_beta
+        assert colony_alpha.ants == {alpha_worker}
+        assert colony_beta.ants == {beta_worker}
+
+    def test_multiple_ants(self):
+        colony = Colony("my-colony")
+        assert colony.ants == set()
+
+        workers = [
+            colony.spawn_ant("worker_alpha"),
+            colony.spawn_ant("worker_beta"),
+            colony.spawn_ant("worker_gamma"),
+        ]
+
+        for worker in workers:
+            assert worker.colony == colony
+
+        assert colony.ants == set(workers)
