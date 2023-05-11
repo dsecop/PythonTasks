@@ -31,3 +31,26 @@ class StockQuantitySorter(StockSorter):
 
     def _get_sorting_key(self, stock_item: StockItem):
         return stock_item.quantity
+
+
+class TestStockSorters():
+    def test_default_case(self):
+        assert isinstance(StockQuantitySorter, type)
+        assert issubclass(StockQuantitySorter, StockSorter)
+
+    def test_stock_sorter(self):
+        item_a = StockItem("a", 100)
+        item_b = StockItem("b", 50)
+        item_c = StockItem("c", 110)
+
+        stock = [item_c, item_a, item_b]
+        sorted_stock = [item_a, item_b, item_c]
+
+        stock_sorter = StockSorter()
+
+        assert sorted_stock == stock_sorter.sort(stock)
+
+        quantity_sorted_stock = [item_b, item_a, item_c]
+        stock_quantity_sorter = StockQuantitySorter()
+
+        assert quantity_sorted_stock == stock_quantity_sorter.sort(stock)
